@@ -81,6 +81,9 @@
     .DashboardMain{
         overflow: unset;
     }
+    table, tbody{
+        overflow: auto;
+    }
 }
 @media only screen and (max-width: 1000px) {
     
@@ -88,3 +91,13 @@
         min-height: 350px;
     }
 }
+
+table, th, tr, td{
+    font-family: roboto !important;
+}
+td:hover{
+    background-color: #fff !important;
+}
+.customOverlay {
+    background: rgba(36, 123, 160, 0.196) !important;
+  }

@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import './Stylesheets/Dashboard.css'
 //import { useNavigate } from 'react-router-dom';
-import windowAggregateData from '../windowAggregateData.json';
+//import windowAggregateData from '../windowAggregateData.json';
 import { BiReset } from 'react-icons/bi';
 import { AiOutlineFilter } from 'react-icons/ai';
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
+import GroupByResult from './GroupByResult';
+import windowAggregateService from '../Services/windowAggregateService';
 const Dashboard = () => {
     const [aggSearchValue, setAggSearchValue] = useState('');
     const [fvSearchValue, setFvSearchValue] = useState('');
-
+    const [open, setOpen] = useState(false);
+    const [windowAggregateData, setWindowAggregateData] = useState([]);
+    const [windowGroupByData, setWindowGroupByData] = useState([]);
+    const [queryId, setQueryId] = useState('');
     //const navigate = useNavigate();
     // console.log(user);
 
@@ -46,9 +53,42 @@ const Dashboard = () => {
         );
     }
 
+    const handleGroupByResult = () => {
+        const reqParams = {
+            queryId: queryId
+        }
+        fetchGroupByData(reqParams);
+        setOpen(true);
+
+    }
+    const fetchData = async () => {
+        try {
+            const response = await windowAggregateService.getData()
+            if (response) {
+                setWindowAggregateData(response);
+            }
+        }
+        catch (exception) {
+            alert("Failed to Load Data");
+        }
+    }
+    const fetchGroupByData = async (reqParams) => {
+        try {
+            const response = await windowAggregateService.getGroupByData(reqParams)
+            if (response) {
+                setWindowGroupByData(response);
+            }
+        }
+        catch (exception) {
+            alert("Failed to Load Data");
+        }
+    }
+    useEffect(()=>{
+        fetchData();
+    },[]);
     return (
         <div>
-            <div className='DashboardPage'>
+            <div className='DashboardPage container container-responsive'>
                 <div className='container container-fluid shadow-sm bg bg-white py-2'>
                     <div className="card text-center m-1">
                         <div className="card-header">
@@ -72,7 +112,7 @@ const Dashboard = () => {
                                     </select>
                                     <label for="fv"><AiOutlineFilter /> Fact Variable</label>
                                 </div>
-                                <div onClick={() => { setAggSearchValue(''); setFvSearchValue('') }} style={{ cursor: "pointer" }} className='col-sm-auto'>
+                                <div onClick={() => { setAggSearchValue(''); setFvSearchValue('') }} style={{ cursor: "pointer" }} className='col-sm-auto mt-2'>
                                     <BiReset /> Reset
                                 </div>
                             </div>
@@ -85,17 +125,17 @@ const Dashboard = () => {
                                     <div className='text-center text-info text-bold'>No Data Is Available</div> :
 
 
-                                    <table class="table table-hover">
+                                    <table class="table table-hover table-responsive">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Query Id.</th>
                                                 <th scope="col">Fact Variable</th>
                                                 <th scope="col">Aggregate Function</th>
-                                                <th scope="col">Group Id.</th>
+                                                <th scope="col">Group By</th>
                                                 <th scope="col">Result(s)</th>
                                             </tr>
                                         </thead>
-                                        <tbody className='table table-hover'>
+                                        <tbody className='table table-hover  table-responsive'>
                                             {
                                                 windowAggregateData
                                                     .filter((queryItem) => { return (aggSearchValue === "" || aggSearchValue === queryItem.aggregateFunction) })
@@ -105,10 +145,33 @@ const Dashboard = () => {
                                                             <th scope="row">{queryItem.queryId}</th>
                                                             <td>{queryItem.factVariable}</td>
                                                             <td>{queryItem.aggregateFunction}</td>
-                                                            <td>{queryItem.groupId === 0 ? "-NA-" : queryItem.groupId}</td>
-                                                            <td>{queryItem.groupId !== 0 ?
-                                                                <button type="button" className="btn btn-outline-primary btn-sm">View Result</button> :
-                                                                queryItem.result}</td>
+                                                            <td>{
+                                                                queryItem.groupByAttributes.length === 0 ? "-" :
+                                                                    <div className='bg bg-white'>
+                                                                        {
+                                                                            queryItem.groupByAttributes.map((groupItem, index) => (
+                                                                                <div key={index}> {groupItem} </div>
+                                                                            ))
+                                                                        }
+                                                                    </div>
+                                                            }
+                                                            </td>
+                                                            <td>{
+                                                                queryItem.groupByAttributes.length !== 0 ?
+                                                                    <div className='bg bg-white'>
+                                                                        <button type="button" className="btn btn-outline-primary btn-sm" onClick={()=>{setQueryId(parseInt(queryItem.queryId)); handleGroupByResult();}}>View Result</button>
+                                                                        <Modal open={open} onClose={() => setOpen(false)} setOpen={setOpen} center classNames={{
+                                                                            overlay: 'customOverlay',
+                                                                        }}>
+                                                                            {/* closeOnOverlayClick={false} */}
+                                                                            <h4 style={{ color: "navy" }} className='text-start mx-5'>Group By Result</h4>
+                                                                            {/* <h5>Request: {consentRequestId} &ensp; &ensp; Doctor: {doctorId} - {doctorName}</h5> */}
+                                                                            {/* <p style={{ fontStyle: "italic", fontFamily: "cursive" }}>(*) Tick your health records that can be viewed by Requested Doctor.</p> */}
+                                                                            <GroupByResult data={windowGroupByData} />
+                                                                        </Modal>
+                                                                    </div> :
+                                                                    queryItem.result}
+                                                            </td>
                                                         </tr>
                                                     ))
                                             }

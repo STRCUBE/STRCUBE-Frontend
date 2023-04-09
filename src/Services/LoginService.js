@@ -8,7 +8,10 @@ const login = async (loginCredentials) => {
     // console.log(response)
     // window.localStorage.setItem('BearerToken', JSON.stringify(response.data.token))
     // return response.data.patient
-    return {firstName: "Venkatesh", lastName: "Boppana", userId: "1"};
+    if (loginCredentials.userName === "venkatesh" && loginCredentials.password === "KVrsmck@21")
+        return { firstName: "Venkatesh", lastName: "Boppana", userId: "1" };
+    else
+        return null;
 }
 const exportObject = { login }
 export default exportObject

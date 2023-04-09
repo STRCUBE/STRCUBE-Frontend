@@ -1,0 +1,75 @@
+.LoginPage{
+    min-height: 570px;
+}
+.LoginContainer{
+    /* justify-content: center; */
+    margin: auto;
+    text-align: center;
+    margin-top: 100px;
+    max-width: 625px;
+    padding: 15px;
+    border-radius: 9px;
+}
+.LoginTitle{
+    color: navy;
+    font-weight: bold;
+    margin: 5px;
+}
+.LoginTitle:hover{
+    padding-left: 10px;
+    font-style: italic;
+    color: #24262b;
+}
+.LoginTitle::before{
+    content: '';
+    position: absolute;
+    left: auto;
+    background-color: #24262b;
+    height: 2px;
+    box-sizing: border-box;
+    width: 100px;
+    margin-top: 25px;
+}
+.LoginForm{
+    margin: 35px 0px
+}
+.InputText{
+    padding: 8px 24px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ededed;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.InputLabel1{
+    margin-right: 40px;
+}
+.InputLabel{
+    margin-right: 25px;
+}
+.InputButton{
+    margin: 12px;
+    padding:  8px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    align-items: center;
+    min-width: 100px;
+    font-size: medium;
+}
+
+
+.btnRegister, .btnPage1Back{
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 10px;
+}
+h5, .success{
+    color: navy;
+}
+h5, .info{
+    color: #24262b;
+}

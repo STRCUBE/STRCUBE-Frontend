@@ -1,0 +1,33 @@
+nav {
+    background-color: #032375eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  
+  .navul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    margin: 0 20px;
+  }
+  a:hover{
+    color: #fff;
+  }
+  a {
+    color: #97c8fc6e;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  .active-link{
+    color: #fff;
+    pointer-events: none;
+  }
+  

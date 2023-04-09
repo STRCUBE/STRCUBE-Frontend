@@ -1,0 +1,10 @@
+.footerPage{
+    background-color: #032375eb;
+    padding: 10px 0 10px 0;
+}
+.copyright p{
+    color: #fff;
+    border-top: #fff solid 1px;
+    padding-top: 5px;
+    text-align: center;
+}

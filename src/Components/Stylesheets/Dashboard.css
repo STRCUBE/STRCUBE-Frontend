@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+  }
+.DashboardPage{
+    min-height: 620px;
+}
+.DashboardMain{
+    /* background-color: #dbdedf9a; */
+    margin: 10px 15px;
+    padding: 12px 24px;
+    border-radius: 6px;
+    min-height: 270px;
+    overflow: auto;
+    /* display: block; */
+}
+.DashboardContent{
+    margin: 10px 15px;
+}
+.HealthDataStatistics, .ConsentsRequests{
+    /* background-color: #dbdedf4e; */
+    margin: 12px 0;
+    padding: 16px 12px;
+}
+.btnPage2Go, .btnPage2Back{
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 10px;
+}
+.ProfileName{
+    float: none;
+    color: green;
+    font-size: 22px;
+    font-weight: bold;
+}
+.ProfileContent{
+    margin-bottom: 10px;
+    height: 175px;
+    padding: 12px 24px;
+    display: grid;
+    grid-template-columns: 0.2fr 0.6fr 0.2fr;
+    grid-auto-rows: auto;
+    grid-auto-flow: column;
+}
+.Prof-Col{
+    /* float: left; */
+    height: 200px;
+    margin: 0px 10px;
+}
+.ProfilePhoto{
+    /* width: 15%; */
+    grid-column: 1;
+}
+.ProfileDetais{
+    /* width: 65%; */
+    grid-column: 2;
+}
+.ProfileQR{
+    /* float: right; */
+    /* width: 20%; */
+    grid-column: 3;
+}
+.imgPatient{
+    width: 175px;
+    height: 185px;
+    border: 2px;
+    border-radius: 4px;
+    border-color: black;
+    border-width: 2px;
+    border-style: inset;
+    margin:auto;
+}
+@media only screen and (max-width: 800px) {
+    .ProfileContent{
+        display: block;
+        height: 40%;
+    }
+    .DashboardMain{
+        overflow: unset;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    
+    .DashboardMain{
+        min-height: 350px;
+    }
+}

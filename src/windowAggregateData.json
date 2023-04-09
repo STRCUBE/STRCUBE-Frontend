@@ -1,0 +1,128 @@
+[
+    {
+        "queryId": 1,
+        "factVariable": "SALE_UNITS",
+        "aggregateFunction": "SUM",
+        "groupId": 0,
+        "result": 0.0
+    },
+    {
+        "queryId": 2,
+        "factVariable": "SALE_UNITS",
+        "aggregateFunction": "SUM",
+        "groupId": 1,
+        "result": 0.0
+    },
+    {
+        "queryId": 3,
+        "factVariable": "SALE_UNITS",
+        "aggregateFunction": "COUNT",
+        "groupId": 0,
+        "result": 0.0
+    },
+    {
+        "queryId": 4,
+        "factVariable": "SALE_UNITS",
+        "aggregateFunction": "AVG",
+        "groupId": 0,
+        "result": 0.0
+    },
+    {
+        "queryId": 5,
+        "factVariable": "SALE_UNITS",
+        "aggregateFunction": "MIN",
+        "groupId": 0,
+        "result": 0.0
+    },
+    {
+        "queryId": 6,
+        "factVariable": "COST_VALUE",
+        "aggregateFunction": "MAX",
+        "groupId": 0,
+        "result": 0.0
+    },
+    {
+        "queryId": 7,
+        "factVariable": "COST_VALUE",
+        "aggregateFunction": "SUM",
+        "groupId": 0,
+        "result": 0.0
+    },
+    {
+        "queryId": 8,
+        "factVariable": "COST_VALUE",
+        "aggregateFunction": "AVG",
+        "groupId": 2,
+        "result": 0.0
+    },
+    {
+        "queryId": 9,
+        "factVariable": "COST_VALUE",
+        "aggregateFunction": "COUNT",
+        "groupId": 0,
+        "result": 0.0
+    },
+    {
+        "queryId": 10,
+        "factVariable": "COST_VALUE",
+        "aggregateFunction": "AVG",
+        "groupId": 0,
+        "result": 0.0
+    },
+    {
+        "queryId": 11,
+        "factVariable": "COST_VALUE",
+        "aggregateFunction": "MIN",
+        "groupId": 0,
+        "result": 0.0
+    },
+    {
+        "queryId": 12,
+        "factVariable": "COST_VALUE",
+        "aggregateFunction": "MAX",
+        "groupId": 0,
+        "result": 0.0
+    },
+    {
+        "queryId": 13,
+        "factVariable": "ORDER_VALUE",
+        "aggregateFunction": "SUM",
+        "groupId": 0,
+        "result": 0.0
+    },
+    {
+        "queryId": 14,
+        "factVariable": "ORDER_VALUE",
+        "aggregateFunction": "AVG",
+        "groupId": 3,
+        "result": 0.0
+    },
+    {
+        "queryId": 15,
+        "factVariable": "ORDER_VALUE",
+        "aggregateFunction": "COUNT",
+        "groupId": 0,
+        "result": 0.0
+    },
+    {
+        "queryId": 16,
+        "factVariable": "ORDER_VALUE",
+        "aggregateFunction": "AVG",
+        "groupId": 0,
+        "result": 0.0
+    },
+    {
+        "queryId": 17,
+        "factVariable": "ORDER_VALUE",
+        "aggregateFunction": "MIN",
+        "groupId": 0,
+        "result": 0.0
+    },
+    {
+        "queryId": 18,
+        "factVariable": "ORDER_VALUE",
+        "aggregateFunction": "MAX",
+        "groupId": 0,
+        "result": 0.0
+    }
+]

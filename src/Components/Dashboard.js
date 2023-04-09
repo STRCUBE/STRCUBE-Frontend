@@ -8,11 +8,11 @@ import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import GroupByResult from './GroupByResult';
 import windowAggregateService from '../Services/windowAggregateService';
-const Dashboard = () => {
+const Dashboard = ({windowAggregateData, setWindowAggregateData}) => {
     const [aggSearchValue, setAggSearchValue] = useState('');
     const [fvSearchValue, setFvSearchValue] = useState('');
     const [open, setOpen] = useState(false);
-    const [windowAggregateData, setWindowAggregateData] = useState([]);
+    // const [windowAggregateData, setWindowAggregateData] = useState([]);
     const [windowGroupByData, setWindowGroupByData] = useState([]);
     const [queryId, setQueryId] = useState('');
     //const navigate = useNavigate();
@@ -53,10 +53,13 @@ const Dashboard = () => {
         );
     }
 
-    const handleGroupByResult = () => {
+    const handleGroupByResult = param => event => {
+        event.preventDefault();
         const reqParams = {
-            queryId: queryId
+            queryId: param
         }
+        setQueryId(param);
+        //console.log(reqParams);
         fetchGroupByData(reqParams);
         setOpen(true);
 
@@ -72,6 +75,7 @@ const Dashboard = () => {
             alert("Failed to Load Data");
         }
     }
+    //fetchData();
     const fetchGroupByData = async (reqParams) => {
         try {
             const response = await windowAggregateService.getGroupByData(reqParams)
@@ -83,9 +87,13 @@ const Dashboard = () => {
             alert("Failed to Load Data");
         }
     }
-    useEffect(()=>{
-        fetchData();
-    },[]);
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            fetchData();
+        }, 5000);
+
+        return () => clearInterval(intervalId);
+    }, []);
     return (
         <div>
             <div className='DashboardPage container container-responsive'>
@@ -159,7 +167,7 @@ const Dashboard = () => {
                                                             <td>{
                                                                 queryItem.groupByAttributes.length !== 0 ?
                                                                     <div className='bg bg-white'>
-                                                                        <button type="button" className="btn btn-outline-primary btn-sm" onClick={()=>{setQueryId(parseInt(queryItem.queryId)); handleGroupByResult();}}>View Result</button>
+                                                                        <button type="button" className="btn btn-outline-primary btn-sm" onClick={handleGroupByResult(queryItem.queryId)}>View Result</button>
                                                                         <Modal open={open} onClose={() => setOpen(false)} setOpen={setOpen} center classNames={{
                                                                             overlay: 'customOverlay',
                                                                         }}>
@@ -167,7 +175,7 @@ const Dashboard = () => {
                                                                             <h4 style={{ color: "navy" }} className='text-start mx-5'>Group By Result</h4>
                                                                             {/* <h5>Request: {consentRequestId} &ensp; &ensp; Doctor: {doctorId} - {doctorName}</h5> */}
                                                                             {/* <p style={{ fontStyle: "italic", fontFamily: "cursive" }}>(*) Tick your health records that can be viewed by Requested Doctor.</p> */}
-                                                                            <GroupByResult data={windowGroupByData} />
+                                                                            <GroupByResult data={windowGroupByData} queryId={queryId}/>
                                                                         </Modal>
                                                                     </div> :
                                                                     queryItem.result}

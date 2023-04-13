@@ -26,7 +26,7 @@ function App() {
   });
   const fetchData = async () => {
     try {
-      const response = await windowAggregateService.getData()
+      const response = await windowAggregateService.getQueries()
       if (response) {
         setWindowAggregateData(response);
       }

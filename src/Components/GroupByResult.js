@@ -1,10 +1,9 @@
 import React from "react";
 
-function GroupByResult({ data, queryId }) {
+function GroupByResult({ data }) {
     //console.log(queryId);
     return (
         <div>
-            <h5>Query Id. {queryId}</h5>
             <table class="table table-hover">
                 {data.map((row, rowIndex) => (
                     (rowIndex === 0) ?

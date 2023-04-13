@@ -1,0 +1,22 @@
+[
+    [
+        "id",
+        "SALESPERSONTYPE",
+        "result"
+    ],
+    [
+        1,
+        "TELE-SALES-PERSON",
+        3
+    ],
+    [
+        2,
+        "COUNTER-SALES",
+        2
+    ],
+    [
+        3,
+        "DOOR-TO-DOOR",
+        1
+    ]
+]

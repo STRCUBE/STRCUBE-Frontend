@@ -4,6 +4,8 @@ import './Stylesheets/Dashboard.css'
 //import windowAggregateData from '../windowAggregateData.json';
 // import { BiReset } from 'react-icons/bi';
 // import { AiOutlineFilter } from 'react-icons/ai';
+
+import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import GroupByResult from './GroupByResult';
@@ -102,15 +104,15 @@ const Dashboard = ({ windowAggregateData, setWindowAggregateData }) => {
                                                             <td key={`${rowIndex}-${cellIndex}`} className={(cellIndex === 2) ? "text-sm text-success" : ""}>{cell}</td>
                                                         ))}
                                                         <td>
-                                                            <div className='bg bg-white'>
-                                                                <button type="button" className="btn btn-outline-primary btn-sm" onClick={handleGetData(row)}>View Result</button>
+                                                            <div>
+                                                                <BsFillArrowRightCircleFill onClick={handleGetData(row)} size={20} style={{color:"navy"}}/>
                                                                 <Modal open={open} onClose={() => setOpen(false)} setOpen={setOpen} center classNames={{
                                                                     overlay: 'customOverlay',
                                                                 }}>
                                                                     {/* closeOnOverlayClick={false} */}
                                                                     <h4 style={{ color: "navy" }} className='text-start mx-5'>Generic Query Result</h4>
                                                                     <p>Query: {queryId} - {query}</p>
-                                                                    <GroupByResult data={windowGroupByData}/>
+                                                                    <GroupByResult data={windowGroupByData} />
                                                                 </Modal>
                                                             </div>
                                                         </td>

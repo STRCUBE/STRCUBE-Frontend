@@ -13,6 +13,9 @@ const Navbar = () => {
           <Link to="/" className={window.location.pathname === "/" ? "active-link" : ""}>Home</Link>
         </li>
         <li className={window.location.pathname === "/" ? "active-li" : ""}>
+          <Link to="/analytics" className={window.location.pathname === "/analytics" ? "active-link" : ""}>Log Analytics</Link>
+        </li>
+        <li className={window.location.pathname === "/" ? "active-li" : ""}>
           <Link to="/about" className={window.location.pathname === "/about" ? "active-link" : ""}>About Us</Link>
         </li>
       </ul>

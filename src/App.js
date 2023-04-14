@@ -8,6 +8,7 @@ import Navbar from './Components/Navbar';
 import LoginPage from './Components/LoginPage';
 import Dashboard from './Components/Dashboard';
 import loginService from './Services/LoginService';
+import Analytics from './Components/Analytics';
 import windowAggregateService from './Services/windowAggregateService';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -77,6 +78,7 @@ function App() {
           {
             (user !== null) && <Route path="/" element={<Dashboard user={user} windowAggregateData={windowAggregateData} setWindowAggregateData={setWindowAggregateData}/>} />
           }
+          <Route path="/analytics" element={<Analytics />} />
           <Route path="/about" element={<AboutPage />} />
         </Routes>
         <Footer />

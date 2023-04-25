@@ -12,7 +12,7 @@ function Table({ data }) {
                         <thead>
                             <tr>
                                 {row.map((cell, cellIndex) => (
-                                    <th key={`${rowIndex}-${cellIndex}`}>{cell}</th>
+                                    <th key={`${rowIndex}-${cellIndex}`}>{cell.toUpperCase()}</th>
                                 ))}
                             </tr>
                         </thead>
@@ -31,10 +31,10 @@ function Table({ data }) {
         </div>
     );
 }
-const Analytics = () => {
+const Analytics = ({ windowAggregateData }) => {
     const [queryId, setQueryId] = useState('');
-    const [timestamp, setTimestamp] = useState('');
-    const [endTimestamp, setEndTimestamp] = useState('');
+    const [timestamp, setTimestamp] = useState("2000-01-01T00:00");
+    const [endTimestamp, setEndTimestamp] = useState("2023-12-31T23:59");
     const [processedTimestamp, setProcessedTimestamp] = useState('');
     const [processedEndTimestamp, setProcessedEndTimestamp] = useState('');
     const [data, setData] = useState([]);
@@ -44,6 +44,28 @@ const Analytics = () => {
     const [strokeColor, setStrokeColor] = useState([]);
     const [aggQuery, setAggQuery] = useState(false);
     // const strokeColour = `#${random(0xffffff).toString(16)}`;
+
+    console.log("Query Data: ", windowAggregateData);
+    const queryList = windowAggregateData.filter((row, rowIndex) => rowIndex !== 0).map((row, rowindex) => {
+
+        return {
+            id: rowindex,
+            value: row[0],
+            displayName: row[0] + " : " + row[2]
+        }
+
+    });
+
+    function Options({ options }) {
+        return (
+            options.map(option =>
+                <option key={option.id} value={option.value}>
+                    {option.displayName}
+                </option>)
+        );
+    }
+
+    console.log("queryList", queryList);
     const fetchGetData = async (reqParams) => {
         try {
             const response = await windowAggregateService.getData(reqParams)
@@ -195,7 +217,11 @@ const Analytics = () => {
             <div className='container container-sm bg-white shadow-sm p-5'>
                 <form onSubmit={handleSubmit}>
                     <div className='input-group'>
-                        <input type='text' placeholder='Query Id...' className='form-control' value={queryId} onChange={(e) => setQueryId(e.target.value)} required />
+                        <select className="form-select" id="fv" aria-label="Floating label select example" value={queryId} onChange={(e) => setQueryId(e.target.value)} required>
+                            <option selected value="" disabled>Select Query</option>
+                            <Options options={queryList} />
+                        </select>
+                        {/* <input type='text' placeholder='Query Id...' className='form-control' value={queryId} onChange={(e) => setQueryId(e.target.value)} required /> */}
                         <label class="control-label mx-3 mt-2" for="timestamp">Range : </label>
                         <input type="datetime-local" id="timestamp" name="timestamp" className='form-control' value={timestamp} onChange={(e) => setTimestamp(e.target.value)} required />
                         <input type="datetime-local" id="timestamp" name="timestamp" className='form-control' value={endTimestamp} onChange={(e) => setEndTimestamp(e.target.value)} required />

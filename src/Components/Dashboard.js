@@ -60,7 +60,7 @@ const Dashboard = ({ windowAggregateData, setWindowAggregateData }) => {
     useEffect(() => {
         const intervalId = setInterval(() => {
             fetchData();
-        }, 5000);
+        }, 15000);
 
         return () => clearInterval(intervalId);
     }, []);

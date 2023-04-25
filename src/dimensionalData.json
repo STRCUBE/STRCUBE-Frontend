@@ -1,0 +1,19 @@
+{
+    "aggregateFunctions": [
+        "SUM",
+        "COUNT",
+        "AVG",
+        "MIN",
+        "MAX"
+    ],
+    "factVariables": [
+        "ORDER_VALUE",
+        "COST_VALUE",
+        "SALE_UNITS"
+    ],
+    "dimensions": [
+        "CATEGORY",
+        "MONTH",
+        "YEAR"
+    ]
+}
